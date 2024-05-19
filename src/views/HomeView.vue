@@ -1,18 +1,51 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-container class="page-container" fill-height fluid>
+    <v-row>
+      <v-btn @click="onParticipateClick">Принять участие</v-btn>
+      <v-btn @click="onShowListClick">Просмотр</v-btn>
+    </v-row>
+    <v-row>
+      <NumberForm v-show="showForm" @submit-form="onSubmitForm" @cancel-form="onCancelForm" />
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import { defineComponent } from 'vue';
 
-export default {
+import NumberForm from "@/components/NumberForm.vue"
+
+export default defineComponent({
   name: 'HomeView',
+
   components: {
-    HelloWorld
-  }
-}
+    NumberForm,
+  },
+
+  data() {
+    return {
+      showForm: false,
+    }
+  },
+
+  methods: {
+    onParticipateClick() {
+      this.showForm = true
+    },
+    onShowListClick() {
+      this.$router.push({ name: 'numbers' })
+    },
+    onSubmitForm() {
+
+    },
+    onCancelForm() {
+      this.showForm = false
+    },
+  },
+});
 </script>
+<style scoped>
+.page-container {
+  height: 100%;
+}
+</style>
