@@ -5,14 +5,19 @@
     </v-row>
     <v-row>
       <div class="ma-2" v-for="(item, index) in this.numberList" :key="index">
-        <div
-          class="icon-container"
-          :style="`background-color: ${item.background_color}`"
-        >
-          <span class="icon-text" :style="`color: ${item.font_color}`">{{
-            item.id
-          }}</span>
-        </div>
+        <v-tooltip location="bottom">
+          <template v-slot:activator="{ props }">
+            <div v-bind="props" class="icon-container" :style="`background-color: ${item.background_color}`">
+              <span class="icon-text" :style="`color: ${item.font_color}`">{{
+                item.id
+                }}</span>
+            </div>
+          </template>
+          <div class="d-flex flex-column">
+            <span>Имя: {{ item.name }}</span>
+            <span>Сообщение: {{ item.message }}</span>
+          </div>
+        </v-tooltip>
       </div>
     </v-row>
   </v-container>
@@ -28,7 +33,7 @@ export default defineComponent({
 
   computed: {
     ...mapState({
-        numberList: state => state.numberList,
+      numberList: state => state.numberList,
     })
   },
 
