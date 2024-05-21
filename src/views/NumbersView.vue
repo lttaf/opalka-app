@@ -7,10 +7,10 @@
       <div class="ma-2" v-for="(item, index) in this.numberList" :key="index">
         <div
           class="icon-container"
-          :style="`background-color: ${item.backgroundColor}`"
+          :style="`background-color: ${item.background_color}`"
         >
-          <span class="icon-text" :style="`color: ${item.color}`">{{
-            item.number
+          <span class="icon-text" :style="`color: ${item.font_color}`">{{
+            item.id
           }}</span>
         </div>
       </div>
