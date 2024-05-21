@@ -40,23 +40,5 @@ export default defineComponent({
 });
 </script>
 <style scoped>
-.icon-container {
-  border-radius: 50%;
-  display: inline-block;
-  height: 50px;
-  font-weight: bold;
-  font-size: 1.2em;
-  width: 50px;
-  margin: 0 auto;
-  cursor: pointer;
-}
-
-.icon-text {
-  display: table-cell;
-  vertical-align: middle;
-  height: 50px;
-  width: 50px;
-  text-align: center;
-  padding: 0 15px;
-}
+@import "~@/assets/css/styles.css";
 </style>

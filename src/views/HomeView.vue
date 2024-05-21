@@ -5,7 +5,9 @@
       <v-btn @click="onShowListClick">Просмотр</v-btn>
     </v-row>
     <v-row>
+      <v-col cols="12">
       <NumberForm v-show="showForm" @submit-form="onSubmitForm" @cancel-form="onCancelForm" />
+    </v-col>
     </v-row>
   </v-container>
 </template>

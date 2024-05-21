@@ -1,15 +1,39 @@
 <template>
-  <div>
-    <v-form>
-        <v-text-field v-model="name" label="Имя" />
-        <v-text-field v-model="color" label="Цвет числа" />
-        <v-text-field v-model="backgroundColor" label="Цвет фона" />
-    </v-form>
-    <div class="d-flex">
-        <v-btn @click="onCancel" variant="text">Отмена</v-btn>
-        <v-btn @click="onSubmit">Подтвердить</v-btn>
+    <div>
+        <div>
+            <v-form>
+                <v-text-field class="form-field" v-model="name" label="Имя" />
+                <v-text-field class="form-field" v-model="message" label="Сообщение" />
+                <div class="form-field d-flex">
+                    <div class="align-self-center">
+                        <div class="icon-container" :style="`background-color: ${backgroundColor}`">
+                            <span class="icon-text" :style="`color: ${color}`">0</span>
+                        </div>
+                    </div>
+                    <div class="ml-5" style="width: 100%;">
+                        <v-menu location="right" offset="10" :close-on-content-click="false">
+                            <template v-slot:activator="{ props }">
+                                <v-text-field v-bind="props" readonly :model-value="color" label="Цвет числа" />
+                            </template>
+                            <v-color-picker v-model="color" mode="hex" hide-inputs></v-color-picker>
+                        </v-menu>
+                        <v-menu location="right" offset="10" :close-on-content-click="false">
+                            <template v-slot:activator="{ props }">
+                                <v-text-field v-bind="props" readonly :model-value="backgroundColor"
+                                    label="Цвет фона" />
+                            </template>
+                            <v-color-picker v-model="backgroundColor" mode="hex" hide-inputs></v-color-picker>
+                        </v-menu>
+                    </div>
+                </div>
+            </v-form>
+        </div>
+        <div class="d-flex my-5 form-field">
+            <v-btn @click="onCancel" color="pink" variant="plain">Отмена</v-btn>
+            <v-spacer></v-spacer>
+            <v-btn @click="onSubmit" color="light-blue" variant="tonal">Подтвердить</v-btn>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -27,12 +51,17 @@ export default {
             this.$emit('cancel-form')
         },
         onSubmit() {
-            this.$emit('submit-form', { name: this.name, color: this.color, backgroundColor: this.backgroundColor })
+            this.$emit('submit-form', { name: this.name, message: this.message, font_color: this.color, background_color: this.backgroundColor })
         },
     },
 }
 </script>
 
-<style>
+<style scoped>
+@import "~@/assets/css/styles.css";
 
+.form-field {
+    min-width: 400px;
+    width: 20%;
+}
 </style>
