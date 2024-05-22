@@ -1,13 +1,13 @@
 <template>
-  <v-container class="page-container" fill-height fluid>
+  <v-container class="page-container d-flex" fill-height fluid>
     <v-row>
-      <v-btn @click="onParticipateClick">Принять участие</v-btn>
-      <v-btn @click="onShowListClick">Просмотр</v-btn>
-    </v-row>
-    <v-row>
-      <v-col cols="12">
-      <NumberForm v-show="showForm" @submit-form="onSubmitForm" @cancel-form="onCancelForm" />
-    </v-col>
+      <v-col class="justify-center align-center d-flex flex-column" cols="12">
+        <NumberForm v-if="showForm" @submit-form="onSubmitForm" @cancel-form="onCancelForm" />
+        <template v-else>
+        <v-btn class="buttons--average" @click="onParticipateClick" variant="outlined">Принять участие</v-btn>
+        <v-btn class="buttons--average my-3" @click="onShowListClick" variant="plain">Просмотр</v-btn>
+      </template>
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -54,5 +54,9 @@ export default defineComponent({
 <style scoped>
 .page-container {
   height: 100%;
+}
+
+.buttons--average {
+  min-width: 15%;
 }
 </style>
