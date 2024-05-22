@@ -1,9 +1,10 @@
 <template>
   <v-container class="page-container" fill-height fluid>
-    <v-row>
-      <v-btn class="my-10" @click="onHomeClick">Домой</v-btn>
+    <v-row class="justify-center align-center d-flex flex-column">
+      <v-btn class="mt-10" size="large" prepend-icon="mdi-home" variant="tonal" @click="onHomeClick">На главную</v-btn>
     </v-row>
     <v-row>
+      <div class="d-flex flex-wrap numbers-container pa-15">
       <div v-for="(item, index) in this.numberList" :key="index">
         <v-tooltip location="bottom">
           <template v-slot:activator="{ props }">
@@ -20,6 +21,7 @@
           </div>
         </v-tooltip>
       </div>
+    </div>
     </v-row>
   </v-container>
 </template>
@@ -64,4 +66,8 @@ export default defineComponent({
 </script>
 <style scoped>
 @import "~@/assets/css/styles.css";
+
+.numbers-container {
+  overflow-y: auto;
+}
 </style>

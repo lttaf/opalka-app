@@ -31,7 +31,7 @@
         <div class="d-flex my-5 form-field">
             <v-btn @click="onCancel" color="pink" variant="plain">Отмена</v-btn>
             <v-spacer></v-spacer>
-            <v-btn @click="onSubmit" color="light-blue" variant="tonal">Подтвердить</v-btn>
+            <v-btn @click="onSubmit" color="black" variant="tonal">Подтвердить</v-btn>
         </div>
     </div>
 </template>

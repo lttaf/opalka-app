@@ -3,36 +3,7 @@ import axios from 'axios'
 
 export default createStore({
   state: {
-    numberList: [
-      {
-        id: "1",
-        name: "eeee",
-        font_color: "#f6f6f6",
-        background_color: "#aaaaaa",
-        message: "",
-      },
-      {
-        id: "2",
-        name: "hehe",
-        font_color: "#f6f6f6",
-        background_color: "#aaaaaa",
-        message: "who dis",
-      },
-      {
-        id: "3",
-        name: "ooooo",
-        font_color: "#f6f6f6",
-        background_color: "#aaaaaa",
-        message: "hello world",
-      },
-      {
-        id: "4",
-        name: "rrrrr",
-        font_color: "#f6f6f6",
-        background_color: "#aaaaaa",
-        message: "uu aa ooooo",
-      },
-    ],
+    numberList: [],
   },
   getters: {
   },
@@ -43,6 +14,17 @@ export default createStore({
   },
   actions: {
     fetchNumberList({ commit }) {
+      // const multipliedData = []
+      // for (let i = 0; i < 500; i++) {
+      //   multipliedData.push({
+      //     id: "1",
+      //     name: "eeee",
+      //     font_color: "#f6f6f6",
+      //     background_color: "#aaaaaa",
+      //     message: "",
+      //   })
+      // }
+      // commit("setNumberList", multipliedData)
       return axios.get("/PigAPI/numbers_list").then((response) => {
         commit("setNumberList", response.data)
       })
