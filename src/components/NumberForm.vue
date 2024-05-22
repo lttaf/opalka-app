@@ -2,7 +2,7 @@
     <div>
         <div>
             <v-form ref="numberForm">
-                <v-text-field class="form-field my-1" v-model="name" label="Имя" :rules="basicRule" />
+                <v-text-field class="form-field my-1" v-model="author" label="Имя" :rules="basicRule" />
                 <v-text-field class="form-field my-1" v-model="message" label="Сообщение" />
                 <div class="form-field d-flex">
                     <div class="align-self-center">
@@ -40,7 +40,7 @@
 export default {
     data() {
         return {
-            name: "",
+            author: "",
             color: "#ffffff",
             backgroundColor: "#000000",
 
@@ -54,7 +54,7 @@ export default {
         },
         onSubmit() {
             if (this.$refs.numberForm.validate()) {
-                this.$emit('submit-form', { name: this.name, message: this.message, font_color: this.color, background_color: this.backgroundColor })
+                this.$emit('submit-form', { author: this.author, message: this.message, font_color: this.color, background_color: this.backgroundColor })
             }
         },
     },

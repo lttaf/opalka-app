@@ -43,13 +43,13 @@ export default createStore({
   },
   actions: {
     fetchNumberList({ commit }) {
-      return axios.get("/api/number_list").then((response) => {
+      return axios.get("/PigAPI/numbers_list").then((response) => {
         commit("setNumberList", response.data)
       })
     },
 
     addNewNumber(_, newNumberData) {
-      return axios.post("/api/number_list", newNumberData)
+      return axios.post("/PigAPI/numbers_list", newNumberData)
     },
   },
   modules: {

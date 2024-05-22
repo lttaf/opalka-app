@@ -10,8 +10,8 @@ module.exports = defineConfig({
 
   devServer: {
     proxy: {
-      "/api": {
-        target: "http://xxx.xxx.xx.xx:xxxx",
+      "/PigAPI": {
+        target: "http://192.168.1.108:8888",
       },
     },
   },

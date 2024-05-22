@@ -15,7 +15,7 @@
           </template>
           <div class="d-flex flex-column">
             <span>#{{ item.id }}</span>
-            <span>Имя: {{ item.name }}</span>
+            <span>Имя: {{ item.author }}</span>
             <span>Сообщение: {{ item.message }}</span>
           </div>
         </v-tooltip>
@@ -58,7 +58,7 @@ export default defineComponent({
   },
 
   created() {
-    // this.fetchData()
+    this.fetchData()
   }
 });
 </script>

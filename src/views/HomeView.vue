@@ -40,9 +40,10 @@ export default defineComponent({
     },
     onSubmitForm(data) {
       this.savingData = true
-      // this.$store.dispatch("addNewNumber", data).then(() => {
-      //   this.savingData = false
-      // })
+      this.$store.dispatch("addNewNumber", data).then(() => {
+        this.savingData = false
+        this.$router.push({ name: "numbers" })
+      })
     },
     onCancelForm() {
       this.showForm = false
