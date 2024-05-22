@@ -27,6 +27,7 @@ export default defineComponent({
   data() {
     return {
       showForm: false,
+      savingData: false,
     }
   },
 
@@ -37,8 +38,11 @@ export default defineComponent({
     onShowListClick() {
       this.$router.push({ name: 'numbers' })
     },
-    onSubmitForm() {
-
+    onSubmitForm(data) {
+      this.savingData = true
+      // this.$store.dispatch("addNewNumber", data).then(() => {
+      //   this.savingData = false
+      // })
     },
     onCancelForm() {
       this.showForm = false

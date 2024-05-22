@@ -1,10 +1,10 @@
 <template>
   <v-container class="page-container" fill-height fluid>
     <v-row>
-      <v-btn @click="onHomeClick">Домой</v-btn>
+      <v-btn class="my-10" @click="onHomeClick">Домой</v-btn>
     </v-row>
     <v-row>
-      <div class="ma-2" v-for="(item, index) in this.numberList" :key="index">
+      <div v-for="(item, index) in this.numberList" :key="index">
         <v-tooltip location="bottom">
           <template v-slot:activator="{ props }">
             <div v-bind="props" class="icon-container" :style="`background-color: ${item.background_color}`">
@@ -14,6 +14,7 @@
             </div>
           </template>
           <div class="d-flex flex-column">
+            <span>#{{ item.id }}</span>
             <span>Имя: {{ item.name }}</span>
             <span>Сообщение: {{ item.message }}</span>
           </div>
@@ -31,6 +32,12 @@ import { mapState } from 'vuex'
 export default defineComponent({
   name: "HomeView",
 
+  data() {
+    return {
+      numbersLoading: false,
+    }
+  },
+
   computed: {
     ...mapState({
       numberList: state => state.numberList,
@@ -41,7 +48,18 @@ export default defineComponent({
     onHomeClick() {
       this.$router.push({ name: "home" });
     },
+
+    fetchData() {
+      this.numbersLoading = true
+      this.$store.dispatch("fetchNumberList").then(() => {
+        this.numbersLoading = false
+      })
+    },
   },
+
+  created() {
+    // this.fetchData()
+  }
 });
 </script>
 <style scoped>

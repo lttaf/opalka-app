@@ -1,9 +1,9 @@
 <template>
     <div>
         <div>
-            <v-form>
-                <v-text-field class="form-field" v-model="name" label="Имя" />
-                <v-text-field class="form-field" v-model="message" label="Сообщение" />
+            <v-form ref="numberForm">
+                <v-text-field class="form-field my-1" v-model="name" label="Имя" :rules="basicRule" />
+                <v-text-field class="form-field my-1" v-model="message" label="Сообщение" />
                 <div class="form-field d-flex">
                     <div class="align-self-center">
                         <div class="icon-container" :style="`background-color: ${backgroundColor}`">
@@ -13,14 +13,14 @@
                     <div class="ml-5" style="width: 100%;">
                         <v-menu location="right" offset="10" :close-on-content-click="false">
                             <template v-slot:activator="{ props }">
-                                <v-text-field v-bind="props" readonly :model-value="color" label="Цвет числа" />
+                                <v-text-field class="my-1" v-bind="props" readonly :model-value="color" label="Цвет числа" :rules="basicRule" />
                             </template>
                             <v-color-picker v-model="color" mode="hex" hide-inputs></v-color-picker>
                         </v-menu>
                         <v-menu location="right" offset="10" :close-on-content-click="false">
                             <template v-slot:activator="{ props }">
-                                <v-text-field v-bind="props" readonly :model-value="backgroundColor"
-                                    label="Цвет фона" />
+                                <v-text-field class="my-1" v-bind="props" readonly :model-value="backgroundColor"
+                                    label="Цвет фона" :rules="basicRule" />
                             </template>
                             <v-color-picker v-model="backgroundColor" mode="hex" hide-inputs></v-color-picker>
                         </v-menu>
@@ -43,6 +43,8 @@ export default {
             name: "",
             color: "#ffffff",
             backgroundColor: "#000000",
+
+            basicRule: [(v) => !!v || "Обязательное поле"]
         }
     },
 
@@ -51,7 +53,9 @@ export default {
             this.$emit('cancel-form')
         },
         onSubmit() {
-            this.$emit('submit-form', { name: this.name, message: this.message, font_color: this.color, background_color: this.backgroundColor })
+            if (this.$refs.numberForm.validate()) {
+                this.$emit('submit-form', { name: this.name, message: this.message, font_color: this.color, background_color: this.backgroundColor })
+            }
         },
     },
 }
