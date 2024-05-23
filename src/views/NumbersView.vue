@@ -6,7 +6,7 @@
     <v-row>
       <div class="d-flex flex-wrap numbers-container pa-15">
       <div v-for="(item, index) in this.numberList" :key="index">
-        <v-tooltip location="bottom">
+        <v-tooltip location="bottom" opacity="1">
           <template v-slot:activator="{ props }">
             <div v-bind="props" class="icon-container" :style="`background-color: ${item.background_color}`">
               <span class="icon-text" :style="`color: ${item.font_color}`">{{

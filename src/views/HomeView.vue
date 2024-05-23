@@ -23,15 +23,15 @@
       </v-col>
       <v-col class="justify-center align-center d-flex flex-column" cols="6">
         <div v-if="showSuccessCard">
-          <v-card variant="tonal" width="110%">
-            <v-card-title><v-icon class="mr-2">mdi-pig</v-icon>Готово</v-card-title>
+          <v-card color="black" width="110%">
+            <v-card-title class="pa-5"><v-icon class="ml-1 mr-2 mb-1">mdi-check-circle-outline</v-icon>Готово</v-card-title>
             <v-card-text>
-              <div class="d-flex justify-center mt-5 text-subtitle-1"> Ваш номер:&nbsp;<span class="font-weight-black">{{ createdNumber }}</span>&nbsp;!</div>
+              <div class="d-flex justify-center text-subtitle-1">Ваш номер:&nbsp;<span class="font-weight-black">{{ createdNumber }}</span>&nbsp;!</div>
             </v-card-text>
             <v-card-actions class="pa-5">
-              <v-btn @click="onCloseSuccessMessage" color="pink" variant="plain">Закрыть</v-btn>
+              <v-btn @click="onCloseSuccessMessage" color="pink" variant="text">Закрыть</v-btn>
               <v-spacer></v-spacer>
-              <v-btn @click="onShowListClick" variant="outlined">Перейти к ряду</v-btn>
+              <v-btn @click="onShowListClick" color="white" variant="tonal">Перейти к ряду</v-btn>
             </v-card-actions>
           </v-card>
         </div>
