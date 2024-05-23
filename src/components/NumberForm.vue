@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <v-form ref="numberForm">
+            <v-form ref="numberForm" @submit.prevent>
                 <v-text-field class="form-field my-1" v-model="author" label="Имя" :rules="basicRule" />
                 <v-text-field class="form-field my-1" v-model="message" label="Сообщение" />
                 <div class="form-field d-flex">
@@ -43,8 +43,9 @@ export default {
             author: "",
             color: "#ffffff",
             backgroundColor: "#000000",
+            message: "",
 
-            basicRule: [(v) => !!v || "Обязательное поле"]
+            basicRule: [(v) => !!v.length || "Обязательное поле"]
         }
     },
 
@@ -60,9 +61,10 @@ export default {
             this.$emit('cancel-form')
         },
         onSubmit() {
-            if (this.$refs.numberForm.validate()) {
+            this.$refs.numberForm.validate().then((resp) => {
+                if (resp.valid)
                 this.$emit('submit-form', { author: this.author, message: this.message, font_color: this.color, background_color: this.backgroundColor })
-            }
+            })
         },
     },
 }
