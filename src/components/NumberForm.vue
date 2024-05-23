@@ -29,9 +29,9 @@
             </v-form>
         </div>
         <div class="d-flex my-5 form-field">
-            <v-btn @click="onCancel" color="pink" variant="plain">Отмена</v-btn>
+            <v-btn @click="onCancel" :disabled="loading" color="pink" variant="plain">Отмена</v-btn>
             <v-spacer></v-spacer>
-            <v-btn @click="onSubmit" color="black" variant="tonal">Подтвердить</v-btn>
+            <v-btn @click="onSubmit" :loading="loading" color="black" variant="tonal">Подтвердить</v-btn>
         </div>
     </div>
 </template>
@@ -46,6 +46,13 @@ export default {
 
             basicRule: [(v) => !!v || "Обязательное поле"]
         }
+    },
+
+    props: {
+        loading: {
+            type: Boolean,
+            default: false,
+        },
     },
 
     methods: {

@@ -1,30 +1,46 @@
 <template>
   <v-container class="page-container d-flex" fill-height fluid>
     <v-row>
-      <v-col class="justify-center align-center d-flex flex-column" cols="6">
+      <v-col class="justify-center align-center d-flex flex-column container--dark" cols="6">
         <div class="px-10">
           <div class="text-h1 text-courier">Humanity<v-icon size="x-small">mdi-chevron-left</v-icon> </div>
           <div class="text-h1 ml-5 mb-4 text-courier"><v-icon size="x-small">mdi-chevron-right</v-icon>Numbers</div>
-          <v-divider class="mb-5 mt-1" :thickness="2"></v-divider>
+          <v-divider class="mb-5 mt-1" color="white" opacity="0.7" :thickness="2"></v-divider>
           <div class="text-body-2 text-courier">
-            В основе проекта HUMANITY&lt;&gt;NUMBERS лежит работа польского художника-концептуалиста Романа Опалки 1965/1-∞. В
-              своей работе Роман Опалка писал на холстах ряд натуральных чисел, начиная с единицы. Он начал этот проект
-              в 1965 году и работал над ним всю оставшуюся жизнь, так и не закончив свою работу. Главная цель его работы
-              была показать бесконечность и превосходство числового ряда, насколько человек ничтожен в сравнении с
-              бесконечностью. Опалка планировал закончить свою работу на 7.777.777, но не дожил до этого момента.
+            В основе проекта HUMANITY&lt;&gt;NUMBERS лежит работа польского художника-концептуалиста Романа Опалки
+            1965/1-∞. В
+            своей работе Роман Опалка писал на холстах ряд натуральных чисел, начиная с единицы. Он начал этот проект
+            в 1965 году и работал над ним всю оставшуюся жизнь, так и не закончив свою работу. Главная цель его работы
+            была показать бесконечность и превосходство числового ряда, насколько человек ничтожен в сравнении с
+            бесконечностью. Опалка планировал закончить свою работу на 7.777.777, но не дожил до этого момента.
           </div>
           <div class="text-body-2 text-courier mt-2">
-            Проект HUMANITY&lt;&gt;NUMBERS предлагает каждому желающему поучаствовать в создании числового ряда и оставить
-                свой след в этом проекте.
+            Проект HUMANITY&lt;&gt;NUMBERS предлагает каждому желающему поучаствовать в создании числового ряда и
+            оставить
+            свой след в этом проекте.
           </div>
         </div>
       </v-col>
       <v-col class="justify-center align-center d-flex flex-column" cols="6">
-        <NumberForm v-if="showForm" @submit-form="onSubmitForm" @cancel-form="onCancelForm" />
+        <div v-if="showSuccessCard">
+          <v-card variant="tonal" width="110%">
+            <v-card-title><v-icon class="mr-2">mdi-pig</v-icon>Готово</v-card-title>
+            <v-card-text>
+              <div class="d-flex justify-center mt-5 text-subtitle-1"> Ваш номер:&nbsp;<span class="font-weight-black">{{ createdNumber }}</span>&nbsp;!</div>
+            </v-card-text>
+            <v-card-actions class="pa-5">
+              <v-btn @click="onCloseSuccessMessage" color="pink" variant="plain">Закрыть</v-btn>
+              <v-spacer></v-spacer>
+              <v-btn @click="onShowListClick" variant="outlined">Перейти к ряду</v-btn>
+            </v-card-actions>
+          </v-card>
+        </div>
+        <NumberForm v-else-if="showForm" :loading="savingData" @submit-form="onSubmitForm"
+          @cancel-form="onCancelForm" />
         <template v-else>
-          <v-btn class="buttons--average my-3" height="60" color="black" @click="onParticipateClick"
-            >Принять участие</v-btn>
-          <v-btn class="buttons--average my-3" @click="onShowListClick" variant="plain"> Просмотр </v-btn>
+          <v-btn class="buttons--average my-3" height="60" color="black" @click="onParticipateClick">Принять
+            участие</v-btn>
+          <v-btn class="buttons--average my-3" @click="onShowListClick" variant="plain"> Просмотр ряда </v-btn>
         </template>
       </v-col>
     </v-row>
@@ -46,6 +62,8 @@ export default defineComponent({
   data() {
     return {
       showForm: false,
+      showSuccessCard: false,
+      createdNumber: 10,
       savingData: false,
     }
   },
@@ -59,13 +77,18 @@ export default defineComponent({
     },
     onSubmitForm(data) {
       this.savingData = true
-      this.$store.dispatch("addNewNumber", data).then(() => {
+      this.$store.dispatch("addNewNumber", data).then((response) => {
+        this.createdNumber = response.data.id
         this.savingData = false
-        this.$router.push({ name: "numbers" })
+        this.showSuccessCard = true
       })
     },
     onCancelForm() {
       this.showForm = false
+    },
+    onCloseSuccessMessage() {
+      this.showForm = false
+      this.showSuccessCard = false
     },
   },
 });
@@ -81,5 +104,10 @@ export default defineComponent({
 
 .text-courier {
   font-family: "Courier New", monospace;
+  color: white;
+}
+
+.container--dark {
+  background-color: black;
 }
 </style>
