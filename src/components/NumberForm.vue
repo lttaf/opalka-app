@@ -27,7 +27,7 @@
                     </div>
                 </div>
             </v-form>
-        </div>
+        </div>  
         <div class="d-flex my-5 form-field">
             <v-btn @click="onCancel" :disabled="loading" color="pink" variant="plain">Отмена</v-btn>
             <v-spacer></v-spacer>

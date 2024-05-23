@@ -22,26 +22,30 @@
         </div>
       </v-col>
       <v-col class="justify-center align-center d-flex flex-column" cols="6">
-        <div v-if="showSuccessCard">
-          <v-card color="black" width="110%">
-            <v-card-title class="pa-5"><v-icon class="ml-1 mr-2 mb-1">mdi-check-circle-outline</v-icon>Готово</v-card-title>
-            <v-card-text>
-              <div class="d-flex justify-center text-subtitle-1">Ваш номер:&nbsp;<span class="font-weight-black">{{ createdNumber }}</span>&nbsp;!</div>
-            </v-card-text>
-            <v-card-actions class="pa-5">
-              <v-btn @click="onCloseSuccessMessage" color="pink" variant="text">Закрыть</v-btn>
-              <v-spacer></v-spacer>
-              <v-btn @click="onShowListClick" color="white" variant="tonal">Перейти к ряду</v-btn>
-            </v-card-actions>
-          </v-card>
-        </div>
-        <NumberForm v-else-if="showForm" :loading="savingData" @submit-form="onSubmitForm"
-          @cancel-form="onCancelForm" />
-        <template v-else>
-          <v-btn class="buttons--average my-3" height="60" color="black" @click="onParticipateClick">Принять
-            участие</v-btn>
-          <v-btn class="buttons--average my-3" @click="onShowListClick" variant="plain"> Просмотр ряда </v-btn>
-        </template>
+        <v-slide-x-transition :duration="150" mode="out-in">
+          <div v-if="showSuccessCard">
+            <v-card color="black" width="110%">
+              <v-card-title class="pa-5"><v-icon
+                  class="ml-1 mr-2 mb-1">mdi-check-circle-outline</v-icon>Готово</v-card-title>
+              <v-card-text>
+                <div class="d-flex justify-center text-subtitle-1">Ваш номер:&nbsp;<span class="font-weight-black">{{
+                    createdNumber }}</span>&nbsp;!</div>
+              </v-card-text>
+              <v-card-actions class="pa-5">
+                <v-btn @click="onCloseSuccessMessage" color="pink" variant="text">Закрыть</v-btn>
+                <v-spacer></v-spacer>
+                <v-btn @click="onShowListClick" color="white" variant="tonal">Перейти к ряду</v-btn>
+              </v-card-actions>
+            </v-card>
+          </div>
+          <NumberForm v-else-if="showForm" :loading="savingData" @submit-form="onSubmitForm"
+            @cancel-form="onCancelForm" />
+          <div class="d-flex flex-column" v-else>
+            <v-btn class="buttons--average my-3" height="60" color="black" @click="onParticipateClick">Принять
+              участие</v-btn>
+            <v-btn class="buttons--average my-3" @click="onShowListClick" variant="plain"> Просмотр ряда </v-btn>
+          </div>
+        </v-slide-x-transition>
       </v-col>
     </v-row>
   </v-container>
