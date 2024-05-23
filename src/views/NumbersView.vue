@@ -1,7 +1,7 @@
 <template>
   <v-container class="page-container" fill-height fluid>
     <v-row class="justify-center align-center d-flex flex-column">
-      <v-btn class="mt-10" size="large" prepend-icon="mdi-home" variant="tonal" @click="onHomeClick">На главную</v-btn>
+      <v-btn class="mt-10" size="large" prepend-icon="mdi-home" variant="text" @click="onHomeClick">На главную</v-btn>
     </v-row>
     <v-row>
       <div class="d-flex flex-wrap numbers-container pa-15">

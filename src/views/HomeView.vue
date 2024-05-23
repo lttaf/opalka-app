@@ -3,19 +3,20 @@
     <v-row>
       <v-col class="justify-center align-center d-flex flex-column" cols="6">
         <div class="px-10">
-          <div class="text-h1">Humanity</div>
-          <div class="text-h1 ml-15 mb-4">Numbers</div>
+          <div class="text-h1 text-courier">Humanity<v-icon size="x-small">mdi-chevron-left</v-icon> </div>
+          <div class="text-h1 ml-5 mb-4 text-courier"><v-icon size="x-small">mdi-chevron-right</v-icon>Numbers</div>
           <v-divider class="mb-5 mt-1" :thickness="2"></v-divider>
-          <span>
-            В основе проекта HUMANITY NUMBERS лежит работа польского художника-концептуалиста Романа Опалки 1965/1-∞. В
+          <div class="text-body-2 text-courier">
+            В основе проекта HUMANITY&lt;&gt;NUMBERS лежит работа польского художника-концептуалиста Романа Опалки 1965/1-∞. В
               своей работе Роман Опалка писал на холстах ряд натуральных чисел, начиная с единицы. Он начал этот проект
               в 1965 году и работал над ним всю оставшуюся жизнь, так и не закончив свою работу. Главная цель его работы
               была показать бесконечность и превосходство числового ряда, насколько человек ничтожен в сравнении с
               бесконечностью. Опалка планировал закончить свою работу на 7.777.777, но не дожил до этого момента.
-
-              Проект HUMANITY NUMBERS предлагает каждому желающему поучаствовать в создании числового ряда и оставить
+          </div>
+          <div class="text-body-2 text-courier mt-2">
+            Проект HUMANITY&lt;&gt;NUMBERS предлагает каждому желающему поучаствовать в создании числового ряда и оставить
                 свой след в этом проекте.
-              </span>
+          </div>
         </div>
       </v-col>
       <v-col class="justify-center align-center d-flex flex-column" cols="6">
@@ -76,5 +77,9 @@ export default defineComponent({
 
 .buttons--average {
   min-width: 200px;
+}
+
+.text-courier {
+  font-family: "Courier New", monospace;
 }
 </style>
