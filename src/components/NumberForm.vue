@@ -2,9 +2,9 @@
     <div>
         <div>
             <v-form ref="numberForm" @submit.prevent>
-                <v-text-field class="form-field my-1" v-model="author" label="Имя" :rules="basicRule" />
-                <v-text-field class="form-field my-1" v-model="message" label="Сообщение" />
-                <div class="form-field d-flex">
+                <v-text-field :class="formField + ' my-1'" v-model="author" label="Имя" :rules="basicRule" />
+                <v-text-field :class="formField + ' my-1'" v-model="message" label="Сообщение" />
+                <div :class="formField + ' d-flex'">
                     <div class="align-self-center">
                         <div class="icon-container" :style="`background-color: ${backgroundColor}`">
                             <span class="icon-text" :style="`color: ${color}`">0</span>
@@ -56,6 +56,13 @@ export default {
         },
     },
 
+    computed: {
+        formField() {
+            if (this.$vuetify.display.xs) return "form-field--mini"
+            else return "form-field--average"
+        },
+    },
+
     methods: {
         onCancel() {
             this.$emit('cancel-form')
@@ -73,8 +80,11 @@ export default {
 <style scoped>
 @import "~@/assets/css/styles.css";
 
-.form-field {
+.form-field--average {
     min-width: 400px;
-    width: 20%;
+}
+
+.form-field--mini {
+    min-width: 270px;
 }
 </style>
