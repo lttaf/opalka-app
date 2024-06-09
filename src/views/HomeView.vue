@@ -1,10 +1,13 @@
 <template>
   <v-container class="page-container d-flex" fill-height fluid>
     <v-row>
-      <v-col class="justify-center align-center d-flex flex-column container--dark" cols="6">
+      <v-col class="justify-center align-center d-flex flex-column container--dark" cols="12" md="6">
         <div class="px-10">
-          <div class="text-h1 text-courier">Humanity<v-icon size="x-small">mdi-chevron-left</v-icon> </div>
-          <div class="text-h1 ml-5 mb-4 text-courier"><v-icon size="x-small">mdi-chevron-right</v-icon>Numbers</div>
+          <div :class="headerClass">
+          <!-- <div class="text-h1 text-courier"> -->
+            <div class="header__line">Humanity<v-icon size="x-small">mdi-chevron-left</v-icon> </div>
+            <div class="ml-5 mb-4 header__line"><v-icon size="x-small">mdi-chevron-right</v-icon>Numbers</div>
+          </div>
           <v-divider class="mb-5 mt-1" color="white" opacity="0.7" :thickness="2"></v-divider>
           <div class="h4 text-courier">
             В основе проекта HUMANITY&lt;&gt;NUMBERS лежит работа польского художника-концептуалиста Романа Опалки
@@ -14,14 +17,14 @@
             была показать бесконечность и превосходство числового ряда, насколько человек ничтожен в сравнении с
             бесконечностью. Опалка планировал закончить свою работу на 7.777.777, но не дожил до этого момента.
           </div>
-          <div class="h4 text-courier mt-2">
+          <div class="text-body-2 text-courier mt-2 mb-5">
             Проект HUMANITY&lt;&gt;NUMBERS предлагает каждому желающему поучаствовать в создании числового ряда и
             оставить
             свой след в этом проекте.
           </div>
         </div>
       </v-col>
-      <v-col class="justify-center align-center d-flex flex-column" cols="6">
+      <v-col class="justify-center align-center d-flex flex-column" cols="12" md="6">
         <v-slide-x-transition :duration="150" mode="out-in">
           <div v-if="showSuccessCard">
             <v-card color="black" width="110%">
@@ -72,6 +75,14 @@ export default defineComponent({
     }
   },
 
+  computed: {
+    headerClass() {
+      if (this.$vuetify.display.xs) return "text-h3 text-courier"
+      else 
+      return "text-h1 text-courier"
+    },
+  },
+
   methods: {
     onParticipateClick() {
       this.showForm = true
@@ -116,5 +127,9 @@ export default defineComponent({
 
 .container--dark {
   background-color: black;
+}
+
+.header__line {
+  white-space: nowrap;
 }
 </style>
