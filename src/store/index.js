@@ -17,11 +17,11 @@ export default createStore({
       // const multipliedData = []
       // for (let i = 0; i < 500; i++) {
       //   multipliedData.push({
-      //     id: "1",
+      //     id: "100000",
       //     name: "eeee",
       //     font_color: "#f6f6f6",
       //     background_color: "#aaaaaa",
-      //     message: "",
+      //     message: "dddqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",
       //   })
       // }
       // commit("setNumberList", multipliedData)

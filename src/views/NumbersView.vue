@@ -6,22 +6,18 @@
     <v-progress-linear v-if="numbersLoading" color="primary" class="my-10" height="6" indeterminate
       rounded></v-progress-linear>
     <v-row>
-      <div class="d-flex flex-wrap numbers-container pa-15">
+      <div class="d-flex flex-wrap justify-center numbers-container pa-15">
         <div v-for="(item, index) in this.numberList" :key="index">
-          <v-tooltip location="bottom" opacity="1">
-            <template v-slot:activator="{ props }">
-              <div v-bind="props" class="icon-container" :style="`background-color: ${item.background_color}`">
+              <div v-bind="props" class="icon-container tooltip" :style="`background-color: ${item.background_color}`">
                 <span class="icon-text" :style="`color: ${item.font_color}`">{{
                   item.id
                   }}</span>
+                  <div class="d-flex flex-column tooltiptext">
+                    <span class="mb-2">#{{ item.id }}</span>
+                    <span>Имя: <span class="text-muted">{{ item.author }}</span></span>
+                    <span>Сообщение: <span class="text-muted">{{ item.message }}</span></span>
+                  </div>
               </div>
-            </template>
-            <div class="d-flex flex-column">
-              <span>#{{ item.id }}</span>
-              <span>Имя: {{ item.author }}</span>
-              <span>Сообщение: {{ item.message }}</span>
-            </div>
-          </v-tooltip>
         </div>
       </div>
     </v-row>
@@ -71,5 +67,48 @@ export default defineComponent({
 
 .numbers-container {
   overflow-y: auto;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  max-width: 200px;
+  background-color: rgba(47, 47, 47, 0.934);
+  color: #e8e6e6;
+  font-size: 0.9rem;
+  padding: 15px 15px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  display: block;
+
+  top: 100%;
+  left: 50%;
+  margin-left: -100px;
+  word-break: break-word;
+}
+
+.tooltip .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  bottom: 100%;  /* At the top of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent rgba(47, 47, 47, 0.934) transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.text-muted {
+  color: #a2a1a1;
 }
 </style>
