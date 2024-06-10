@@ -17,7 +17,7 @@ export default createStore({
       // const multipliedData = []
       // for (let i = 0; i < 500; i++) {
       //   multipliedData.push({
-      //     id: "100000",
+      //     id: "10000",
       //     name: "eeee",
       //     font_color: "#f6f6f6",
       //     background_color: "#aaaaaa",
