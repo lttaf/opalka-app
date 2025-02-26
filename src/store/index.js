@@ -25,7 +25,7 @@ export default createStore({
       //   })
       // }
       // commit("setNumberList", multipliedData)
-      return axios.get("/PigAPI/numbers_list").then((response) => {
+      return axios.get("/PigAPI/numbers_list", { params: { limit: 3 }}).then((response) => {
         commit("setNumberList", response.data)
       })
     },

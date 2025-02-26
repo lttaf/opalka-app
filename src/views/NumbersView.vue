@@ -1,12 +1,12 @@
 <template>
-  <v-container class="page-container" fill-height fluid>
-    <v-row class="justify-center align-center d-flex flex-column">
+  <div>
+    <div class="justify-center align-center d-flex btn-container pb-10">
       <v-btn class="mt-10" size="large" prepend-icon="mdi-home" variant="text" @click="onHomeClick">На главную</v-btn>
-    </v-row>
+    </div>
     <v-progress-linear v-if="numbersLoading" color="primary" class="my-10" height="6" indeterminate
       rounded></v-progress-linear>
-    <v-row>
-      <div class="d-flex flex-wrap justify-center numbers-container pa-15">
+    <div class="full-height">
+      <div class="d-flex flex-wrap justify-center numbers-container px-15 pb-5">
         <div v-for="(item, index) in this.numberList" :key="index">
               <div v-bind="props" class="icon-container tooltip" :style="`background-color: ${item.background_color}`">
                 <span class="icon-text" :style="`color: ${item.font_color}`">{{
@@ -20,8 +20,8 @@
               </div>
         </div>
       </div>
-    </v-row>
-  </v-container>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -67,6 +67,7 @@ export default defineComponent({
 
 .numbers-container {
   overflow-y: auto;
+  height: 90vh;
 }
 
 .tooltip {
@@ -110,5 +111,9 @@ export default defineComponent({
 
 .text-muted {
   color: #a2a1a1;
+}
+
+.btn-container {
+  height: 10vh;
 }
 </style>
